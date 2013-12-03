@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+%packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+%define new command
+\newcommand{\ld}{\lambda}
+\newcommand{\s}{\sigma}
+\newcommand{\al}{\alpha}
+\newcommand{\om}{\omega}
+\newcommand{\e}{\varepsilon}
+\newcommand{\de}{\delta}
+\newcommand{\f}{\phi}
+\newcommand{\ur}{u_r}
+\newcommand{\uf}{u_\f}
+\newcommand{\uz}{u_z}
+\newcommand{\deriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\deris}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\mf}[1]{\mathbf{#1}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bsubs}{\begin{subequations}}
+\newcommand{\esubs}{\end{subequations}}
+
+\begin{document}
+\title{Numerical Analysis of Tea Cup Experiment}
+\author{Louis Garrigue\footnote{louis.garrigue@ens.fr} and Zhe Wang\footnote{zhe.wang@ens.fr}}
+\date{\today}
+\maketitle
+
+\section{Theory: The motion of incompressible fluid}
+\subsection{The Navier Stokes Equation}
+The equations describing an incompressible Newtonian fluid is called Navier-Stokes equation, which is derived from the continuous form of momentum conservation law.
+\beq
+\left(\rho\deriv{\mf{v}}{t}+(\mf{v}\cdot\nabla)\mf{v}\right)=-\nabla p+\mu\nabla^2\mf{v}+\mf{f}
+\eeq
+with continuity equation
+\beq
+\nabla\cdot\mf{v}=0
+\eeq
+In a cylindrical coordinates, it becomes
+
+
+\begin{multline}
+r:~\rho\left(\deriv{u_r}{t}+u_r\deriv{u_r}{r}+\frac{u_\f}{r}\deriv{u_r}{\f}+u_z\deriv{u_r}{z}-\frac{u_\f^2}{r}\right)\\
+=-\deriv{P}{r}+\mu\left[\frac{1}{r}\deriv{}{r}(r\deriv{\ur}{r})+\frac{1}{r^2}\deris{\ur}{\f}+\deris{\ur}{z}-\frac{\ur}{r^2}-\frac{2}{r^2}\deriv{\uf}{\f}\right]+f_r
+\end{multline}
+\begin{multline}
+\f:~\rho\left(\deriv{\uf}{t}+u_r\deriv{\uf}{r}+\frac{\uf}{r}\deriv{\uf}{\f}+\uz\deriv{\uf}{z}-\frac{\ur\uf}{r}\right)\\
+=-\frac{1}{r}\deriv{P}{\f}+\mu\left[\frac{1}{r}\deriv{}{r}(r\deriv{\uf}{r})+\frac{1}{r^2}\deris{\uf}{\f}+\deris{\uf}{z}+\frac{1}{r^2}\deriv{\ur}{\f}-\frac{\uf}{r^2}\right]+f_\f
+\end{multline}
+\begin{multline}
+z:~\rho\left(\deriv{\uz}{t}+u_r\deriv{\uz}{r}+\frac{\uf}{r}\deriv{\uz}{\f}+u_z\deriv{\uz}{z}\right)\\
+=-\deriv{P}{z}+\mu\left[\frac{1}{r}\deriv{}{r}(r\deriv{\uz}{r})+\frac{1}{r^2}\deris{\uz}{\f}+\deris{\uz}{z}\right]+f_z
+\end{multline}
+with continuity equation
+\beq
+\frac{1}{r}\deriv{}{r}(r\ur)+\frac{1}{r}\deriv{\uf}{\f}+\deriv{\uz}{z}=0
+\eeq
+
+%\bibliographystyle{unsrt}
+%\bibliography{reference}
+\end{document}
